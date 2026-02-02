@@ -1,0 +1,11 @@
+.search-container {
+  @apply flex gap-2 mb-4;
+}
+
+.search-input {
+  @apply flex-1 border p-2 rounded;
+}
+
+.search-button {
+  @apply bg-blue-500 text-white px-4 rounded;
+}

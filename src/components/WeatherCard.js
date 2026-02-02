@@ -1,27 +1,26 @@
+import "./WeatherCard.css";
+
 function WeatherCard({ weather, getCountryName, onAddFavorite }) {
-  // Si aucune donnée météo, on n'affiche rien
   if (!weather) return null;
 
   return (
-    <div>
-      <h2>
+    <div className="weather-card">
+      <h2 className="weather-title">
         {weather.name} {getCountryName(weather.sys.country)}
       </h2>
 
-      {/* Température + état du ciel */}
       <p>
         {Math.round(weather.main.temp)}°C |{" "}
         {weather.weather[0].description}
       </p>
 
-      {/* Humidité */}
       <p>💧 Humidité : {weather.main.humidity}%</p>
-
-      {/* Vent */}
       <p>💨 Vent : {weather.wind.speed} m/s</p>
 
-      {/* Bouton favoris */}
-      <button onClick={onAddFavorite}>
+      <button
+        className="favorite-button"
+        onClick={onAddFavorite}
+      >
         Ajouter aux favoris ⭐
       </button>
     </div>
