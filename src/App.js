@@ -1,6 +1,9 @@
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import Search from "./pages/Search";
-import Favorites from "./pages/Favorites";
+import HomePage from "./pages/HomePage";
+import FavoritesPage from "./pages/FavoritesPage";
+import ComparePage from "./pages/ComparePage";
+
+
 
 function App() {
   return (
@@ -9,12 +12,17 @@ function App() {
         <nav>
           <Link to="/">Recherche</Link> |{" "}
           <Link to="/favorites">Favoris</Link>
+          <Link to="/compare">Comparer</Link>
+
         </nav>
 
         <Routes>
-          <Route path="/" element={<Search />} />
-          <Route path="/favorites" element={<Favorites />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/favorites" element={<FavoritesPage />} />
+          <Route path="/compare" element={<ComparePage />} />
+
         </Routes>
+
       </div>
     </BrowserRouter>
   );

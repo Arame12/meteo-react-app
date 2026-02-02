@@ -1,19 +1,22 @@
 import { useState } from "react";
 import SearchBar from "../components/SearchBar";
-import { getWeatherByCity } from "../services/weatherApi";
+import WeatherCard from "../components/WeatherCard";
+import { getWeatherByCity } from "../services/weatherAPI";
 
-function Search() {
+function HomePage() {
+  // 🔹 États
   const [city, setCity] = useState("");
   const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  // Traduire code pays → nom complet
+  // 🔹 Traduire le code pays en nom complet (SN → Sénégal)
   const getCountryName = (code) => {
     const regionNames = new Intl.DisplayNames(["fr"], { type: "region" });
     return regionNames.of(code);
   };
 
+  // 🔹 Recherche météo
   const handleSearch = async () => {
     if (!city) {
       setError("Veuillez entrer une ville");
@@ -26,7 +29,7 @@ function Search() {
     try {
       const data = await getWeatherByCity(city);
       setWeather(data);
-    } catch {
+    } catch (err) {
       setError("Ville non trouvée");
       setWeather(null);
     } finally {
@@ -34,25 +37,33 @@ function Search() {
     }
   };
 
+  // 🔹 Ajouter aux favoris (max 3)
   const addToFavorites = () => {
-    const stored = JSON.parse(localStorage.getItem("favorites")) || [];
+    if (!weather) return;
 
-    if (stored.length >= 3) {
+    const storedFavorites =
+      JSON.parse(localStorage.getItem("favorites")) || [];
+
+    if (storedFavorites.length >= 3) {
       alert("Maximum 3 villes favorites");
       return;
     }
 
-    const exists = stored.find(
+    const alreadyExists = storedFavorites.find(
       (item) => item.name === weather.name
     );
 
-    if (exists) {
-      alert("Ville déjà en favoris");
+    if (alreadyExists) {
+      alert("Cette ville est déjà en favoris");
       return;
     }
 
-    stored.push(weather);
-    localStorage.setItem("favorites", JSON.stringify(stored));
+    storedFavorites.push(weather);
+    localStorage.setItem(
+      "favorites",
+      JSON.stringify(storedFavorites)
+    );
+
     alert("Ville ajoutée aux favoris ⭐");
   };
 
@@ -60,32 +71,27 @@ function Search() {
     <div>
       <h1>Recherche météo</h1>
 
-      <SearchBar city={city} setCity={setCity} onSearch={handleSearch} />
+      {/* 🔹 Barre de recherche */}
+      <SearchBar
+        city={city}
+        setCity={setCity}
+        onSearch={handleSearch}
+      />
 
+      {/* 🔹 États */}
       {loading && <p>Chargement...</p>}
       {error && <p>{error}</p>}
 
+      {/* 🔹 Affichage météo */}
       {weather && (
-        <div>
-          <h2>
-            {weather.name} {getCountryName(weather.sys.country)}
-          </h2>
-
-          <p>
-            {Math.round(weather.main.temp)}°C |{" "}
-            {weather.weather[0].description}
-          </p>
-
-          <p>💧 Humidité : {weather.main.humidity}%</p>
-          <p>💨 Vent : {weather.wind.speed} m/s</p>
-
-          <button onClick={addToFavorites}>
-            Ajouter aux favoris ⭐
-          </button>
-        </div>
+        <WeatherCard
+          weather={weather}
+          getCountryName={getCountryName}
+          onAddFavorite={addToFavorites}
+        />
       )}
     </div>
   );
 }
 
-export default Search;
+export default HomePage;

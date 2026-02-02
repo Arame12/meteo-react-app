@@ -7,7 +7,10 @@ function SearchBar({ city, setCity, onSearch }) {
         value={city}
         onChange={(e) => setCity(e.target.value)}
       />
-      <button onClick={onSearch}>Rechercher</button>
+
+      <button onClick={onSearch}>
+        Rechercher
+      </button>
     </div>
   );
 }
