@@ -1,0 +1,31 @@
+.favorites-container {
+  @apply max-w-3xl mx-auto;
+}
+
+.add-favorite-box {
+  @apply flex gap-2 mb-6;
+}
+
+.add-input {
+  @apply flex-1 border p-2 rounded;
+}
+
+.add-button {
+  @apply bg-blue-500 text-white px-4 rounded;
+}
+
+.error-text {
+  @apply text-red-500 mb-4;
+}
+
+.favorite-card {
+  @apply bg-white p-4 rounded shadow mb-4;
+}
+
+.favorite-title {
+  @apply text-lg font-bold mb-1;
+}
+
+.remove-button {
+  @apply mt-2 bg-red-500 text-white px-3 py-1 rounded;
+}

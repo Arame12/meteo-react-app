@@ -1,26 +1,29 @@
 import { useState, useEffect } from "react";
 import { getWeatherByCity } from "../services/weatherAPI";
+import "./FavoritesPage.css";
 
 function FavoritesPage() {
   const [favorites, setFavorites] = useState([]);
   const [city, setCity] = useState("");
   const [error, setError] = useState("");
 
-  // Charger les favoris au démarrage
+  // Charger les favoris depuis le localStorage
   useEffect(() => {
     const stored =
       JSON.parse(localStorage.getItem("favorites")) || [];
     setFavorites(stored);
   }, []);
 
-  // Traduire le code pays → nom complet
+  // Convertir le code pays en nom complet
   const getCountryName = (code) => {
-    const regionNames = new Intl.DisplayNames(["fr"], { type: "region" });
+    const regionNames = new Intl.DisplayNames(["fr"], {
+      type: "region",
+    });
     return regionNames.of(code);
   };
 
   // Ajouter une ville depuis la page Favoris
-  const addFavoriteFromPage = async () => {
+  const addFavorite = async () => {
     if (!city) {
       setError("Veuillez entrer une ville");
       return;
@@ -70,35 +73,38 @@ function FavoritesPage() {
   };
 
   return (
-    <div>
+    <div className="favorites-container">
       <h1>Villes favorites</h1>
 
-      {/* 🔹 Ajouter une ville */}
-      <div>
+      {/* Ajouter une ville */}
+      <div className="add-favorite-box">
         <input
+          className="add-input"
           type="text"
           placeholder="Ajouter une ville"
           value={city}
           onChange={(e) => setCity(e.target.value)}
         />
-        <button onClick={addFavoriteFromPage}>
+
+        <button
+          className="add-button"
+          onClick={addFavorite}
+        >
           Ajouter ⭐
         </button>
-        {error && <p>{error}</p>}
       </div>
 
-      <hr />
+      {error && <p className="error-text">{error}</p>}
 
-      {/* 🔹 Liste des favoris */}
+      {/* Liste des favoris */}
       {favorites.length === 0 && (
         <p>Aucune ville favorite</p>
       )}
 
       {favorites.map((city, index) => (
-        <div key={index}>
-          <h2>
-            {city.name}{" "}
-            {getCountryName(city.sys.country)}
+        <div className="favorite-card" key={index}>
+          <h2 className="favorite-title">
+            {city.name} {getCountryName(city.sys.country)}
           </h2>
 
           <p>
@@ -109,7 +115,10 @@ function FavoritesPage() {
           <p>💧 Humidité : {city.main.humidity}%</p>
           <p>💨 Vent : {city.wind.speed} m/s</p>
 
-          <button onClick={() => removeFavorite(city.name)}>
+          <button
+            className="remove-button"
+            onClick={() => removeFavorite(city.name)}
+          >
             Supprimer ❌
           </button>
         </div>
