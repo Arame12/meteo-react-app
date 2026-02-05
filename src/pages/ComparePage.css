@@ -1,0 +1,25 @@
+.compare-container {
+  @apply flex flex-col items-center text-white mt-10;
+}
+
+.compare-title {
+  @apply text-3xl font-bold mb-6;
+}
+
+.compare-inputs {
+  @apply flex gap-4;
+}
+
+.compare-cards {
+  @apply flex gap-6 mt-8 flex-wrap justify-center;
+}
+
+.compare-card {
+  @apply p-6 rounded-xl backdrop-blur-md bg-white/10 shadow-lg text-center w-64;
+}
+.compare-results {
+  @apply flex flex-wrap justify-center gap-8 mt-10;
+}
+.compare-card {
+  @apply p-6 rounded-xl backdrop-blur-md bg-white/10 shadow-lg text-center w-72 m-2;
+}

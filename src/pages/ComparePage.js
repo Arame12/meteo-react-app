@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { getWeatherByCity } from "../services/weatherAPI";
+import "./ComparePage.css";
 
 function ComparePage() {
   const [city1, setCity1] = useState("");
@@ -8,7 +9,6 @@ function ComparePage() {
   const [weather2, setWeather2] = useState(null);
   const [error, setError] = useState("");
 
-  // Traduire code pays → nom complet
   const getCountryName = (code) => {
     const regionNames = new Intl.DisplayNames(["fr"], { type: "region" });
     return regionNames.of(code);
@@ -34,60 +34,83 @@ function ComparePage() {
   };
 
   return (
-    <div>
-      <h1>Comparer deux villes</h1>
+    <div className="compare-container">
 
-      <input
-        type="text"
-        placeholder="Ville 1"
-        value={city1}
-        onChange={(e) => setCity1(e.target.value)}
-      />
+      <h1 className="compare-title">
+        Comparer deux villes
+      </h1>
 
-      <input
-        type="text"
-        placeholder="Ville 2"
-        value={city2}
-        onChange={(e) => setCity2(e.target.value)}
-      />
+      <div className="compare-inputs">
 
-      <button onClick={handleCompare}>
-        Comparer
-      </button>
+        <input
+          className="search-input"
+          type="text"
+          placeholder="Ville 1"
+          value={city1}
+          onChange={(e) => setCity1(e.target.value)}
+        />
 
-      {error && <p>{error}</p>}
+        <input
+          className="search-input"
+          type="text"
+          placeholder="Ville 2"
+          value={city2}
+          onChange={(e) => setCity2(e.target.value)}
+        />
 
-      <div style={{ display: "flex", gap: "40px", marginTop: "20px" }}>
+        <button
+          className="search-button"
+          onClick={handleCompare}
+        >
+          Comparer
+        </button>
+
+      </div>
+
+      {error && <p className="compare-error">{error}</p>}
+
+      <div className="compare-results">
+
         {weather1 && (
-          <div>
-            <h2>
+          <div className="compare-card">
+
+            <h2 className="compare-city">
               {weather1.name}{" "}
               {getCountryName(weather1.sys.country)}
             </h2>
-            <p>
+
+            <p className="compare-weather">
               {Math.round(weather1.main.temp)}°C |{" "}
               {weather1.weather[0].description}
             </p>
+
             <p>💧 Humidité : {weather1.main.humidity}%</p>
             <p>💨 Vent : {weather1.wind.speed} m/s</p>
+
           </div>
         )}
 
         {weather2 && (
-          <div>
-            <h2>
+          <div className="compare-card">
+
+            <h2 className="compare-city">
               {weather2.name}{" "}
               {getCountryName(weather2.sys.country)}
             </h2>
-            <p>
+
+            <p className="compare-weather">
               {Math.round(weather2.main.temp)}°C |{" "}
               {weather2.weather[0].description}
             </p>
+
             <p>💧 Humidité : {weather2.main.humidity}%</p>
             <p>💨 Vent : {weather2.wind.speed} m/s</p>
+
           </div>
         )}
+
       </div>
+
     </div>
   );
 }

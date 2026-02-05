@@ -1,11 +1,28 @@
 .weather-card {
-  @apply bg-white p-4 rounded shadow;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  @apply p-4 rounded-xl text-white shadow-lg;
+}
+.favorite-add-btn {
+  @apply mt-4 bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition shadow-lg;
+}
+.favorite-add-btn:hover {
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.8);
+}
+.favorite-add-btn {
+  @apply mt-4 bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition shadow-lg;
 }
 
-.weather-title {
-  @apply text-xl font-bold mb-2;
+.favorite-add-btn:hover {
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.8);
 }
-
-.favorite-button {
-  @apply mt-3 bg-yellow-400 px-3 py-1 rounded;
+.weather-card {
+  @apply mt-8 p-4 rounded-xl backdrop-blur-md bg-white/10 shadow-lg text-white;
+}
+.weather-icon {
+  @apply mx-auto;
+}
+.weather-icon {
+  width: 90px;
+  margin: auto;
 }

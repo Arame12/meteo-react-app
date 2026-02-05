@@ -1,38 +1,54 @@
-.App {
-  text-align: center;
+.app-background {
+ 
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+.app-background {
+  background: radial-gradient(circle at bottom, #0b1d3a, #000);
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  position: relative;
+  z-index: 0;
+
 }
 
-.App-logo {
-  height: 40vmin;
+/* étoiles */
+.app-background::before {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background-image: radial-gradient(white 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: starsMove 60s linear infinite;
+  opacity: 0.3;
+
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+
+@keyframes starsMove {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-500px);
   }
 }
-
-.App-header {
-  background-color: #282c34;
+.page-title {
+  @apply text-white text-2xl font-bold text-center mb-4;
+}
+.page-title {
+  @apply text-white text-3xl font-bold mb-6 text-center;
+}
+.app-background {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.app-background > *:nth-child(2) {
+  flex: 1;
 }

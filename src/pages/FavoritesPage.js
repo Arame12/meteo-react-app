@@ -7,23 +7,18 @@ function FavoritesPage() {
   const [city, setCity] = useState("");
   const [error, setError] = useState("");
 
-  // Charger les favoris depuis le localStorage
   useEffect(() => {
     const stored =
       JSON.parse(localStorage.getItem("favorites")) || [];
     setFavorites(stored);
   }, []);
 
-  // Convertir le code pays en nom complet
   const getCountryName = (code) => {
-    const regionNames = new Intl.DisplayNames(["fr"], {
-      type: "region",
-    });
+    const regionNames = new Intl.DisplayNames(["fr"], { type: "region" });
     return regionNames.of(code);
   };
 
-  // Ajouter une ville depuis la page Favoris
-  const addFavorite = async () => {
+  const addFavoriteFromPage = async () => {
     if (!city) {
       setError("Veuillez entrer une ville");
       return;
@@ -60,7 +55,6 @@ function FavoritesPage() {
     }
   };
 
-  // Supprimer une ville
   const removeFavorite = (cityName) => {
     const updated = favorites.filter(
       (item) => item.name !== cityName
@@ -74,12 +68,16 @@ function FavoritesPage() {
 
   return (
     <div className="favorites-container">
-      <h1>Villes favorites</h1>
 
-      {/* Ajouter une ville */}
-      <div className="add-favorite-box">
+      <h1 className="favorites-title">
+        Villes favorites
+      </h1>
+
+      {/* 🔹 Ajouter une ville */}
+      <div className="favorites-add-container">
+
         <input
-          className="add-input"
+          className="search-input"
           type="text"
           placeholder="Ajouter une ville"
           value={city}
@@ -87,27 +85,33 @@ function FavoritesPage() {
         />
 
         <button
-          className="add-button"
-          onClick={addFavorite}
+          className="search-button"
+          onClick={addFavoriteFromPage}
         >
           Ajouter ⭐
         </button>
+
+        {error && <p className="favorites-error">{error}</p>}
+
       </div>
 
-      {error && <p className="error-text">{error}</p>}
+      <hr className="favorites-divider" />
 
-      {/* Liste des favoris */}
+      {/* 🔹 Liste des favoris */}
       {favorites.length === 0 && (
-        <p>Aucune ville favorite</p>
+        <p className="favorites-empty">
+          Aucune ville favorite
+        </p>
       )}
 
       {favorites.map((city, index) => (
-        <div className="favorite-card" key={index}>
-          <h2 className="favorite-title">
+        <div key={index} className="favorite-card">
+
+          <h2 className="favorite-city">
             {city.name} {getCountryName(city.sys.country)}
           </h2>
 
-          <p>
+          <p className="favorite-weather">
             {Math.round(city.main.temp)}°C |{" "}
             {city.weather[0].description}
           </p>
@@ -116,11 +120,12 @@ function FavoritesPage() {
           <p>💨 Vent : {city.wind.speed} m/s</p>
 
           <button
-            className="remove-button"
+            className="favorite-delete-btn"
             onClick={() => removeFavorite(city.name)}
           >
             Supprimer ❌
           </button>
+
         </div>
       ))}
     </div>

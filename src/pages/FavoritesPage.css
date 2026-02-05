@@ -1,31 +1,39 @@
 .favorites-container {
-  @apply max-w-3xl mx-auto;
+  @apply flex flex-col items-center text-white mt-10;
 }
 
-.add-favorite-box {
-  @apply flex gap-2 mb-6;
+.favorites-title {
+  @apply text-3xl font-bold mb-6;
 }
 
-.add-input {
-  @apply flex-1 border p-2 rounded;
+.favorites-add-container {
+  @apply flex gap-4 items-center;
 }
 
-.add-button {
-  @apply bg-blue-500 text-white px-4 rounded;
+.favorites-error {
+  @apply text-red-400 mt-2;
 }
 
-.error-text {
-  @apply text-red-500 mb-4;
+.favorites-divider {
+  @apply w-1/2 border-white/20 my-6;
+}
+
+.favorites-empty {
+  @apply text-gray-300;
 }
 
 .favorite-card {
-  @apply bg-white p-4 rounded shadow mb-4;
+  @apply p-4 mt-4 rounded-xl backdrop-blur-md bg-white/10 shadow-lg text-center w-72;
 }
 
-.favorite-title {
-  @apply text-lg font-bold mb-1;
+.favorite-city {
+  @apply text-xl font-semibold mb-2;
 }
 
-.remove-button {
-  @apply mt-2 bg-red-500 text-white px-3 py-1 rounded;
+.favorite-weather {
+  @apply mb-2;
+}
+
+.favorite-delete-btn {
+  @apply mt-3 bg-red-500 px-4 py-2 rounded hover:bg-red-600 transition;
 }

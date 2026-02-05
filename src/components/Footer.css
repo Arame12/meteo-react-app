@@ -1,0 +1,11 @@
+.footer {
+  @apply text-white text-center py-6 mt-10 backdrop-blur-md bg-white/10;
+}
+
+.footer-text {
+  @apply font-semibold;
+}
+
+.footer-sub {
+  @apply text-sm text-gray-300 mt-1;
+}

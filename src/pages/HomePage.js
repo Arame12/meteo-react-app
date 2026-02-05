@@ -2,6 +2,9 @@ import { useState } from "react";
 import SearchBar from "../components/SearchBar";
 import WeatherCard from "../components/WeatherCard";
 import { getWeatherByCity } from "../services/weatherAPI";
+import "./HomePage.css";
+import { getForecastByCity } from "../services/weatherAPI";
+
 
 function HomePage() {
   // 🔹 États
@@ -9,6 +12,9 @@ function HomePage() {
   const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [forecast, setForecast] = useState(null);
+
+
 
   // 🔹 Traduire le code pays en nom complet (SN → Sénégal)
   const getCountryName = (code) => {
@@ -27,14 +33,18 @@ function HomePage() {
     setError("");
 
     try {
-      const data = await getWeatherByCity(city);
-      setWeather(data);
-    } catch (err) {
-      setError("Ville non trouvée");
-      setWeather(null);
-    } finally {
-      setLoading(false);
-    }
+  const data = await getWeatherByCity(city);
+  setWeather(data);
+
+  const forecastData = await getForecastByCity(city);
+  setForecast(forecastData);
+
+} catch (err) {
+  setError("Ville non trouvée");
+  setWeather(null);
+  setForecast(null);
+}
+
   };
 
   // 🔹 Ajouter aux favoris (max 3)
@@ -68,8 +78,8 @@ function HomePage() {
   };
 
   return (
-    <div>
-      <h1>Recherche météo</h1>
+    <div className="home-container">
+      <h1 className="page-title">Recherche météo</h1>
 
       {/* 🔹 Barre de recherche */}
       <SearchBar
@@ -90,6 +100,28 @@ function HomePage() {
           onAddFavorite={addToFavorites}
         />
       )}
+      {forecast && (
+  <div className="forecast-card">
+
+    <h3>Prévision pour demain</h3>
+
+    <img
+      src={`https://openweathermap.org/img/wn/${forecast.list[8].weather[0].icon}@2x.png`}
+      alt="icone météo"
+    />
+
+    <p>
+      {Math.round(forecast.list[8].main.temp)}°
+      {" | "}
+      {forecast.list[8].weather[0].description}
+    </p>
+
+    <p>💧 Humidité : {forecast.list[8].main.humidity}%</p>
+    <p>💨 Vent : {forecast.list[8].wind.speed} m/s</p>
+
+  </div>
+)}
+
     </div>
   );
 }

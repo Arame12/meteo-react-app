@@ -13,6 +13,21 @@ export const getWeatherByCity = async (city) => {
       appid: API_KEY,
     },
   });
+ 
+  return response.data;
+};
+export const getForecastByCity = async (city, unit = "metric") => {
+  const response = await axios.get(
+    "https://api.openweathermap.org/data/2.5/forecast",
+    {
+      params: {
+        q: city,
+        appid: API_KEY,
+        units: unit,
+        lang: "fr"
+      }
+    }
+  );
 
   return response.data;
 };

@@ -1,0 +1,12 @@
+.navbar {
+  @apply flex justify-center gap-6 text-white p-4;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.nav-link {
+  @apply font-semibold hover:underline cursor-pointer;
+}
+.navbar {
+  @apply flex flex-wrap justify-center gap-6 text-white p-4;
+}

@@ -1,11 +1,18 @@
 .search-container {
-  @apply flex gap-2 mb-4;
+  @apply flex items-center justify-center gap-4 mt-6;
 }
 
 .search-input {
-  @apply flex-1 border p-2 rounded;
+  @apply bg-transparent border border-white text-white p-3 rounded-lg w-64 outline-none;
+}
+
+.search-input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .search-button {
-  @apply bg-blue-500 text-white px-4 rounded;
+  @apply bg-blue-500 text-white px-5 py-3 rounded-lg hover:bg-blue-600 transition;
+}
+.search-input:focus {
+  box-shadow: 0 0 10px rgba(255,255,255,0.5);
 }
