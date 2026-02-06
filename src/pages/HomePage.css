@@ -1,6 +1,7 @@
 .home-container {
-  @apply flex flex-col items-center justify-center text-white min-h-screen;
+  @apply flex flex-col items-center text-white px-4 pt-20;
 }
+
 .forecast-card {
-  @apply mt-8 p-4 rounded-xl bg-white/10 backdrop-blur-md text-white text-center w-72 mx-auto shadow-lg;
+  @apply mt-8 p-4 rounded-xl bg-white/10 backdrop-blur-md text-white text-center w-full max-w-sm mx-auto shadow-lg;
 }

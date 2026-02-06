@@ -1,29 +1,31 @@
 .favorites-container {
-  @apply flex flex-col items-center text-white mt-10;
+  @apply flex flex-col items-center text-white px-4 pt-20;
 }
 
 .favorites-title {
-  @apply text-3xl font-bold mb-6;
+  @apply text-3xl font-bold mb-6 text-center;
 }
 
+/* Ajout ville */
 .favorites-add-container {
-  @apply flex gap-4 items-center;
+  @apply flex flex-col sm:flex-row gap-4 items-center w-full max-w-md;
 }
 
 .favorites-error {
-  @apply text-red-400 mt-2;
+  @apply text-red-400 mt-2 text-center;
 }
 
 .favorites-divider {
-  @apply w-1/2 border-white/20 my-6;
+  @apply w-full max-w-md border-white/20 my-6;
 }
 
 .favorites-empty {
-  @apply text-gray-300;
+  @apply text-gray-300 text-center;
 }
 
+/* Carte ville */
 .favorite-card {
-  @apply p-4 mt-4 rounded-xl backdrop-blur-md bg-white/10 shadow-lg text-center w-72;
+  @apply p-4 mt-4 rounded-xl backdrop-blur-md bg-white/10 shadow-lg text-center w-full max-w-sm;
 }
 
 .favorite-city {

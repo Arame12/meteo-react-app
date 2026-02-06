@@ -17,8 +17,9 @@
   box-shadow: 0 0 12px rgba(255, 215, 0, 0.8);
 }
 .weather-card {
-  @apply mt-8 p-4 rounded-xl backdrop-blur-md bg-white/10 shadow-lg text-white;
+  @apply w-full max-w-sm;
 }
+
 .weather-icon {
   @apply mx-auto;
 }

@@ -1,9 +1,9 @@
 .search-container {
-  @apply flex items-center justify-center gap-4 mt-6;
+  @apply flex flex-col sm:flex-row gap-3 w-full max-w-md;
 }
 
 .search-input {
-  @apply bg-transparent border border-white text-white p-3 rounded-lg w-64 outline-none;
+  @apply bg-transparent border border-white text-white p-3 rounded-lg w-full outline-none;
 }
 
 .search-input::placeholder {
@@ -11,8 +11,9 @@
 }
 
 .search-button {
-  @apply bg-blue-500 text-white px-5 py-3 rounded-lg hover:bg-blue-600 transition;
+  @apply bg-blue-500 text-white px-5 py-3 rounded-lg hover:bg-blue-600 transition w-full sm:w-auto;
 }
+
 .search-input:focus {
   box-shadow: 0 0 10px rgba(255,255,255,0.5);
 }

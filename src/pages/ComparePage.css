@@ -1,25 +1,19 @@
 .compare-container {
-  @apply flex flex-col items-center text-white mt-10;
+  @apply flex flex-col items-center text-white px-4 pt-20;
 }
 
 .compare-title {
-  @apply text-3xl font-bold mb-6;
+  @apply text-3xl font-bold mb-6 text-center;
 }
 
 .compare-inputs {
-  @apply flex gap-4;
+  @apply flex flex-col sm:flex-row gap-4 w-full max-w-md;
 }
 
-.compare-cards {
-  @apply flex gap-6 mt-8 flex-wrap justify-center;
-}
-
-.compare-card {
-  @apply p-6 rounded-xl backdrop-blur-md bg-white/10 shadow-lg text-center w-64;
-}
 .compare-results {
   @apply flex flex-wrap justify-center gap-8 mt-10;
 }
+
 .compare-card {
-  @apply p-6 rounded-xl backdrop-blur-md bg-white/10 shadow-lg text-center w-72 m-2;
+  @apply p-6 rounded-xl backdrop-blur-md bg-white/10 shadow-lg text-center w-full max-w-sm m-2;
 }
